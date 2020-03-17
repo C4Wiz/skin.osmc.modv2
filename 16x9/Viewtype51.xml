@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <!-- List -->
+	<include name="Viewtype51">
+
+		<control type="group">
+			<visible>Control.IsVisible(51)</visible>
+			
+				<!-- Details total unwatched episodes -->
+				<control type="fadelabel">
+					<left>50</left>
+					<bottom>12</bottom>
+					<width>1920</width>
+					<height>33</height>
+					<visible>Integer.IsGreater(Container.TotalUnWatched,0) + Skin.HasSetting(UnwatchedEpisodes)</visible>
+					<font>Font37</font>
+					<align>left</align>
+					<aligny>bottom</aligny>
+					<label>Unwatched Episodes: $INFO[Container.TotalUnWatched]</label>
+					<textcolor>$VAR[TextColor2]</textcolor>
+				</control>
+			
+			<!-- Media Flag Background -->
+			<control type="image">
+				<left>-1000</left>
+				<top>52</top>
+				<width>3980</width>
+				<height>70</height>
+				<texture colordiffuse="$VAR[TextColor1]" border="2">common/Border.png</texture>
+				<visible>Container.Content(episodes)</visible>
+				<include>VisibleFadeAnimation</include>
+			</control>
+			<control type="image">
+				<left>-1000</left>
+				<top>52</top>
+				<width>3980</width>
+				<height>70</height>
+				<texture colordiffuse="$VAR[TextColor2]" border="2">common/Border.png</texture>
+				<visible>Container.Content(episodes)</visible>
+				<include>VisibleFadeAnimation</include>
+			</control>
+			<control type="image">
+				<left>0</left>
+				<top>52</top>
+				<width>3980</width>
+				<height>70</height>
+				<visible>Container.Content(episodes)</visible>
+				<texture colordiffuse="$VAR[DarkenColor]">dialogs/DialogTextBackground.png</texture>
+				<include>VisibleFadeAnimation</include>
+			</control>
+
+			<!-- Media image - not episodes -->
+			<control type="group">
+				<visible>!Container.Content(episodes)</visible>
+
+				<!-- Movies -->
+				<include content="image-51-video">
+					<param name="fallback">DefaultMovies.png</param>
+					<param name="visible">Container.Content(movies)</param>
+				</include>
+				<!-- Albums -->
+				<include content="image-51">
+					<param name="fallback">DefaultAlbumCover.png</param>
+					<param name="visible">Container.Content(albums)</param>
+				</include>
+				<!-- Others -->
+				<include content="image-51">
+					<param name="fallback">DefaultTVShows.png</param>
+					<param name="visible">!Container.Content(movies) + !Container.Content(albums)</param>
+				</include>
+				<!-- Collection -->
+				<control type="group">
+					<left>120</left>
+					<top>225</top>
+					<width>405</width>
+					<height>600</height>
+					<control type="image">
+						<left>0</left>
+						<bottom>0</bottom>
+						<width>88</width>
+						<height>88</height>
+						<fadetime>200</fadetime>
+						<texture background="true">views/OverlayCornerLeft.png</texture>
+						<visible>ListItem.IsCollection</visible>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<bottom>0</bottom>
+						<width>88</width>
+						<height>88</height>
+						<fadetime>200</fadetime>
+						<texture background="true">views/OverlayCollection.png</texture>
+						<visible>ListItem.IsCollection</visible>
+					</control>
+				</control>
+			</control>
+
+			<!-- Episode Info -->
+			<control type="group">
+				<left>120</left>
+				<top>120</top>
+				<visible>Container.Content(episodes)</visible>
+
+				<control type="group">
+					<!-- Episode image -->
+					<control type="image">
+						<left>0</left>
+						<!--top>30</top-->
+						<top>50</top>
+						<width>500</width>
+						<height>334</height>
+						<fadetime>200</fadetime>
+						<texture fallback="DefaultTVShows.png">$VAR[mediaImages]</texture>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
+					</control>
+				</control>
+
+				<!-- Season & Episode Info -->
+				<control type="fadelabel">
+					<left>0</left>
+					<!--top>310</top-->
+					<top>20</top>
+					<width>500</width>
+					<height>45</height>
+					<font>Font40</font>
+					<label>$INFO[ListItem.TVShowTitle]</label>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<pauseatend>5000</pauseatend>
+				</control>
+				<!--control type="fadelabel">
+					<left>5</left>
+					<top>352</top>
+					<width>460</width>
+					<height>45</height>
+					<font>Font33</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<label>$INFO[ListItem.Title]</label>
+					<pauseatend>5000</pauseatend>
+				</control-->
+				<!--control type="fadelabel">
+					<left>10</left>
+					<top>350</top>
+					<width>460</width>
+					<height>45</height>
+					<font>Font30</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<label>$VAR[SEListView]</label>
+					<pauseatend>5000</pauseatend>
+				</control-->
+				
+				<!-- Episode Plot -->
+				<control type="group">
+					<left>0</left>
+					<top>360</top>
+					<width>500</width>
+					<height>550</height>
+					<control type="textbox">
+						<align>left</align>
+						<aligny>center</aligny>
+						<font>Font33</font>
+						<label>$VAR[Plot]</label>
+						<textcolor>$VAR[TextColor1]</textcolor>
+						<autoscroll delay="3000" time="1400" repeat="6000">true</autoscroll>
+					</control>
+				</control>
+
+			</control>
+
+			<!-- List -->
+			<control type="fixedlist" id="51">
+				<left>750</left>
+				<centertop>55%</centertop>
+				<width>1050</width>
+				<height>850</height>
+				<onup>51</onup>
+				<ondown>51</ondown>
+				<onleft>60</onleft>
+				<pagecontrol>60</pagecontrol>
+				<focusposition>4</focusposition>
+				<orientation>vertical</orientation>
+				<viewtype label="535">list</viewtype>
+				<scrolltime tween="sine" easing="out">240</scrolltime>
+				<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums)</visible>
+
+				<itemlayout height="72" width="1050">
+					<control type="label">
+						<left>32</left>
+						<top>0</top>
+						<width>1018</width>
+						<height>72</height>
+						<font>Font36</font>
+						<label>[LIGHT]$VAR[Label1][/LIGHT]</label>
+						<textcolor>$VAR[TextColor2]</textcolor>
+					</control>
+					<!-- Watched status -->
+					<control type="image">
+						<left>0</left>
+						<top>29</top>
+						<width>14</width>
+						<height>14</height>
+						<texture>$VAR[StatusOverlay]</texture>
+						<colordiffuse>$VAR[TextColor2]</colordiffuse>
+						<animation effect="fade" start="50" end="50" condition="true">Conditional</animation>
+						<visible>!ListItem.IsCollection</visible>
+					</control>
+				</itemlayout>
+
+				<focusedlayout height="144" width="1050">
+					<control type="label">
+						<left>32</left>
+						<top>25</top>
+						<width>1018</width>
+						<height>48</height>
+						<font>Font49</font>
+						<label>$VAR[Label1]</label>
+						<textcolor>$VAR[TextColor1]</textcolor>
+						<scroll>True</scroll>
+						<animation effect="fade" start="100" end="50" time="200" tween="cubic" easing="out" reversible="true" condition="!Control.HasFocus(51)">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>32</left>
+						<top>25</top>
+						<width>1018</width>
+						<height>58</height>
+						<texture colordiffuse="$VAR[TextColor1]">$VAR[focus58]</texture>
+						<animation effect="fade" start="100" end="50" time="200" tween="cubic" easing="out" reversible="true" condition="!Control.HasFocus(51)">Conditional</animation>
+						<visible>!ListItem.IsParentFolder</visible>
+					</control>
+					<control type="label">
+						<left>32</left>
+						<top>82</top>
+						<width>1018</width>
+						<height>27</height>
+						<font>Font27</font>
+						<label>$VAR[Label2]</label>
+						<textcolor>$VAR[TextColor1]</textcolor>
+						<animation effect="fade" start="100" end="50" time="200" tween="cubic" easing="out" reversible="true" condition="!Control.HasFocus(51)">Conditional</animation>
+					</control>
+					<!-- Watched status -->
+					<control type="image">
+						<left>0</left>
+						<top>43</top>
+						<width>14</width>
+						<height>14</height>
+						<texture>$VAR[StatusOverlay]</texture>
+						<colordiffuse>$VAR[TextColor1]</colordiffuse>
+						<animation effect="fade" start="100" end="50" time="200" tween="cubic" easing="out" reversible="true" condition="!Control.HasFocus(51)">Conditional</animation>
+						<visible>!ListItem.IsCollection</visible>
+					</control>
+				</focusedlayout>
+
+			</control>
+
+		</control>
+
+	</include>	
+	
+
+
+	<include name="image-51">
+		<param name="fallback">DefaultVideo.png</param>
+		<param name="visible">False</param>
+		<definition>
+			<control type="image">
+				<left>120</left>
+				<top>225</top>
+				<width>405</width>
+				<height>600</height>
+				<fadetime>200</fadetime>
+				<texture fallback="$PARAM[fallback]" background="true">$VAR[mediaImages]</texture>
+				<aspectratio aligny="center">keep</aspectratio>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+	
+	<include name="image-51-video">
+		<param name="fallback">DefaultVideo.png</param>
+		<param name="visible">False</param>
+		<definition>
+			<control type="image">
+				<left>120</left>
+				<top>225</top>
+				<width>405</width>
+				<height>600</height>
+				<fadetime>200</fadetime>
+				<texture fallback="$PARAM[fallback]" background="true">$VAR[mediaImages]</texture>
+				<aspectratio align="left" aligny="bottom">keep</aspectratio>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+</includes>
