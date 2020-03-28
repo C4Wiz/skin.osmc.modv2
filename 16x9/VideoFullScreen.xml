@@ -755,4 +755,167 @@
 
 	</controls>
 
+</window>IGHT] $VAR[VideoPlayerAudioChannels]</label>
+					<visible>!VideoPlayer.Content(musicvideos)</visible>
+				</control>
+				
+				<control type="label" id="1">
+					<left>-163</left>
+					<top>65</top>
+					<width>650</width>
+					<height>30</height>
+					<font>Font27</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<!--label>[LIGHT]Sample Rate:[/LIGHT] $INFO[Player.Process(AudioSamplerate)]Hz ($INFO[Player.Process(AudioBitsPerSample)]bit)</label-->
+					<label>[LIGHT]Sample Rate:[/LIGHT] $VAR[AudioSamplerateVar], $VAR[AudioBitrateVar] bits</label>
+					<visible>!VideoPlayer.Content(musicvideos)</visible>
+				</control>
+				
+				<!--Video Info -->
+				<control type="label" id="1">
+					<left>-170</left>
+					<top>100</top>
+					<width>650</width>
+					<height>30</height>
+					<font>Font28</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<label>Video Stream:</label>
+					<visible>!VideoPlayer.Content(musicvideos)</visible>
+				</control>
+				
+				<control type="label" id="1">
+					<left>-163</left>
+					<top>130</top>
+					<width>650</width>
+					<height>30</height>
+					<font>Font27</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<label>[LIGHT]Codec:[/LIGHT] $VAR[PlayerVideoCodec]</label>
+					<visible>!VideoPlayer.Content(musicvideos)</visible>
+				</control>
+				
+				<control type="label" id="1">
+					<left>-163</left>
+					<top>160</top>
+					<width>650</width>
+					<height>30</height>
+					<font>Font27</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<label>[LIGHT]Resolution:[/LIGHT] $VAR[PlayerVideoResolution] ($VAR[VideoWidthVar] x $VAR[VideoHeightVar]) $INFO[Player.Process(VideoFPS)] fps</label>
+					<visible>!VideoPlayer.Content(musicvideos)</visible>
+				</control>
+				
+				<control type="label" id="1">
+					<left>-163</left>
+					<top>190</top>
+					<width>650</width>
+					<height>30</height>
+					<font>Font27</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<label>[LIGHT]Aspect Ratio:[/LIGHT] $INFO[Window(Home).Property(nowplaying_videoaspect)]:1</label>
+					<visible>!VideoPlayer.Content(musicvideos)</visible>
+				</control>
+				
+				<control type="label" id="1">
+					<left>-163</left>
+					<top>220</top>
+					<width>650</width>
+					<height>30</height>
+					<font>Font27</font>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<label>[LIGHT]Bitrate:[/LIGHT] $INFO[System.FPS] MB/s</label>
+					<visible>!VideoPlayer.Content(musicvideos)</visible>
+				</control>
+
+		      	<!-- Cover -->
+				<!--control type="image" id="1">
+					<left>1410</left>
+					<top>10</top>
+					<width>244</width>
+					<height>248</height>
+					<aspectratio align="right">keep</aspectratio>
+					<texture>$VAR[VideoPlayerIcon]</texture>
+				</control-->
+				
+				<!-- Live TV next information -->
+				<!--control type="group" id="1">
+					<top>292</top>
+					<width>1620</width>
+					<height>40</height>
+					<visible>VideoPlayer.Content(LiveTV) + Window.IsVisible(fullscreeninfo)</visible>
+					<animation type="Visible">
+						<effect type="zoom" start="90" end="100" center="auto" tween="back" easing="out" time="200"/>
+						<effect type="fade" start="0" end="100" time="200"/>
+					</animation>
+					<animation type="Hidden">
+						<effect type="zoom" start="100" end="90" center="auto" easing="in" time="200"/>
+						<effect type="fade" start="100" end="0" time="200"/>
+					</animation>
+					<control type="image" id="1">
+						<width>1620</width>
+						<height>40</height>
+						<texture colordiffuse="$VAR[OverlayColor]">dialogs/Background.png</texture>
+					</control>
+
+					<control type="label" id="1">
+						<width>1280</width>
+						<height>40</height>
+						<left>20</left>
+						<label>$VAR[VideoPlayerNext]</label>
+						<font>Font25</font>
+					</control>
+
+					<control type="label" id="1">
+						<width>1580</width>
+						<height>40</height>
+						<left>20</left>
+						<align>right</align>
+						<font>Font33-light</font>
+						<label>Press Select for details</label>
+						<font>Font25</font>
+					</control>
+
+				</control-->
+
+			</control>
+			
+			<!-- PVR channel number input -->
+			<!--control type="group" id="1">
+				<left>-150</left>
+				<top>-75</top>
+				<width>1920</width>
+				<height>1080</height>
+				<visible>!String.IsEmpty(PVR.ChannelNumberInput)</visible>
+				<animation type="Visible">
+					<effect type="zoom" start="90" end="100" center="auto" tween="back" easing="out" time="200"/>
+					<effect type="fade" start="0" end="100" time="200"/>
+				</animation>
+				<animation type="Hidden">
+					<effect type="zoom" start="100" end="90" center="auto" easing="in" time="200"/>
+					<effect type="fade" start="100" end="0" time="200"/>
+				</animation>
+				<control type="image" id="1">
+					<centerleft>50%</centerleft>
+					<centertop>50%</centertop>
+					<width>140</width>
+					<height>140</height>
+					<texture colordiffuse="$VAR[OverlayColor]">dialogs/Background.png</texture>
+				</control>
+				<control type="label" id="1">
+					<label>$INFO[PVR.ChannelNumberInput]</label>
+					<centerleft>50%</centerleft>
+					<centertop>50%</centertop>
+					<align>center</align>
+					<font>Font72</font>
+					<width>140</width>
+					<height>140</height>
+					<textcolor>$VAR[TextColor1]</textcolor>
+					<aligny>center</aligny>
+				</control>
+			</control-->
+			
+		</control>
+
+	</controls>
+
 </window>

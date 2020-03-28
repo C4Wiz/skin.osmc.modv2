@@ -1451,3 +1451,9 @@
 	</variable>
 
 </includes>
+.HasAddon(script.artistslideshow)">[COLOR lightgreen]v$INFO[System.AddonVersion(script.artistslideshow)] $LOCALIZE[31093][/COLOR]</value>
+		<value condition="!String.IsEmpty(System.AddonVersion(script.artistslideshow)) + !System.HasAddon(script.artistslideshow)">[COLOR orange]$LOCALIZE[31119][/COLOR]</value>
+		<value>[COLOR red]$LOCALIZE[31092][/COLOR]</value>
+	</variable>
+
+</includes>
